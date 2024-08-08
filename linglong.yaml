@@ -1,0 +1,29 @@
+version: "1"
+
+package:
+  id: io.github.Auxilium
+  name: Auxilium
+  version: 0.0.0.1
+  kind: app
+  description: |
+    a sample tool for collect most of the depend dll for the executable file
+
+command:
+  - /opt/apps/io.github.Auxilium/files/bin/Auxilium
+
+base: org.deepin.foundation/23.0.0
+runtime: org.deepin.Runtime/23.0.1
+
+sources:
+  - kind: git
+    url: https://github.com/Mtr1994/Auxilium.git
+    version: master
+    commit: bb8e4169ca8342e82ff152073c3f8b9afc8af014
+
+build: |
+  cd /project/linglong/sources/Auxilium.git
+  cp Resource/icon/logo.png Resource/icon/Auxilium.png
+  git apply ../../../0001-install.patch
+  qmake -makefile PREFIX=${PREFIX} LIB_INSTALL_DIR=${PREFIX}/lib/${TRIPLET}
+  make
+  make install
