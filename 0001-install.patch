@@ -1,0 +1,53 @@
+From 661be29b2eca377a3470f4082e5eabaff4b01032 Mon Sep 17 00:00:00 2001
+From: wjyrich <1071633242@qq.com>
+Date: Thu, 8 Aug 2024 14:56:00 +0800
+Subject: [PATCH] install
+
+---
+ Auxilium.desktop | 10 ++++++++++
+ Auxilium.pro     |  9 ++++++++-
+ 2 files changed, 18 insertions(+), 1 deletion(-)
+ create mode 100644 Auxilium.desktop
+
+diff --git a/Auxilium.desktop b/Auxilium.desktop
+new file mode 100644
+index 0000000..b297012
+--- /dev/null
++++ b/Auxilium.desktop
+@@ -0,0 +1,10 @@
++[Desktop Entry]
++Categories=Accessibility;Qt;Utility;
++Exec=Auxilium
++Name=Auxilium
++Icon=Auxilium
++StartupNotify=false
++Terminal=false
++Type=Application
++GenericName=Auxilium
++Version=1.0.0
+\ No newline at end of file
+diff --git a/Auxilium.pro b/Auxilium.pro
+index ff6596a..134f62b 100644
+--- a/Auxilium.pro
++++ b/Auxilium.pro
+@@ -57,9 +57,16 @@ FORMS += \
+ 
+ # Default rules for deployment.
+ qnx: target.path = /tmp/$${TARGET}/bin
+-else: unix:!android: target.path = /opt/$${TARGET}/bin
++else: unix:!android: #target.path = /opt/$${TARGET}/bin
+ !isEmpty(target.path): INSTALLS += target
+ 
++target.path = $$PREFIX/bin
++desktop.files = Auxilium.desktop
++desktop.path = $$PREFIX/share/applications/
++icons.path = $$PREFIX/share/icons
++icons.files = Resource/icon/Auxilium.png
++
++INSTALLS += target desktop icons
+ RC_ICONS = ./Resource/icon/icon.ico
+ 
+ RESOURCES += \
+-- 
+2.43.4
+
